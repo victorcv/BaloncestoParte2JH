@@ -46,6 +46,11 @@ public class Equipo implements Serializable {
 
     @OneToOne    private Entrenador entrenador;
 
+    @ManyToMany(mappedBy = "equipos")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Temporada> temporadas = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -108,6 +113,14 @@ public class Equipo implements Serializable {
 
     public void setEntrenador(Entrenador entrenador) {
         this.entrenador = entrenador;
+    }
+
+    public Set<Temporada> getTemporadas() {
+        return temporadas;
+    }
+
+    public void setTemporadas(Set<Temporada> temporadas) {
+        this.temporadas = temporadas;
     }
 
     @Override

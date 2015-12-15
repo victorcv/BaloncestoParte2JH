@@ -21,7 +21,8 @@
             "jugador": "Jugador",
             "estadio": "Estadio",
             "socio": "Socio",
-            "entrenador": "Entrenador"
+            "entrenador": "Entrenador",
+            "temporada": "Temporada"
         }
     }
 }
