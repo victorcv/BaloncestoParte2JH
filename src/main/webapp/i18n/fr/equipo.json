@@ -19,7 +19,8 @@
             "fechaCreacion": "FechaCreacion",
             "pais": "Pais",
             "jugador": "Jugador",
-            "estadio": "Estadio"
+            "estadio": "Estadio",
+            "socio": "Socio"
         }
     }
 }

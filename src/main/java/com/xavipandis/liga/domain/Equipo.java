@@ -39,6 +39,11 @@ public class Equipo implements Serializable {
 
     @OneToOne    private Estadio estadio;
 
+    @ManyToMany(mappedBy = "equipos")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Socio> socios = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -85,6 +90,14 @@ public class Equipo implements Serializable {
 
     public void setEstadio(Estadio estadio) {
         this.estadio = estadio;
+    }
+
+    public Set<Socio> getSocios() {
+        return socios;
+    }
+
+    public void setSocios(Set<Socio> socios) {
+        this.socios = socios;
     }
 
     @Override
