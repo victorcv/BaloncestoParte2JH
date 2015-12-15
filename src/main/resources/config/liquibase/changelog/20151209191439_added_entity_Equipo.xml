@@ -27,6 +27,9 @@
             <column name="estadio_id" type="bigint">
                 <constraints unique="true"/>
             </column>
+            <column name="entrenador_id" type="bigint">
+                <constraints unique="true"/>
+            </column>
         </createTable>
         
         <addForeignKeyConstraint baseColumnNames="estadio_id"
@@ -34,6 +37,12 @@
                                  constraintName="fk_equipo_estadio_id"
                                  referencedColumnNames="id"
                                  referencedTableName="estadio"/>
+
+        <addForeignKeyConstraint baseColumnNames="entrenador_id"
+                                 baseTableName="equipo"
+                                 constraintName="fk_equipo_entrenador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entrenador"/>
 
     </changeSet>
 </databaseChangeLog>

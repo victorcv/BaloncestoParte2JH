@@ -44,6 +44,8 @@ public class Equipo implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Socio> socios = new HashSet<>();
 
+    @OneToOne    private Entrenador entrenador;
+
     public Long getId() {
         return id;
     }
@@ -98,6 +100,14 @@ public class Equipo implements Serializable {
 
     public void setSocios(Set<Socio> socios) {
         this.socios = socios;
+    }
+
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
     }
 
     @Override

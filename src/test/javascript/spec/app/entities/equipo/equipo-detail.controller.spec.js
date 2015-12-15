@@ -2,7 +2,7 @@
 
 describe('Equipo Detail Controller', function() {
     var $scope, $rootScope;
-    var MockEntity, MockEquipo, MockJugador, MockEstadio, MockSocio;
+    var MockEntity, MockEquipo, MockJugador, MockEstadio, MockSocio, MockEntrenador;
     var createController;
 
     beforeEach(inject(function($injector) {
@@ -13,6 +13,7 @@ describe('Equipo Detail Controller', function() {
         MockJugador = jasmine.createSpy('MockJugador');
         MockEstadio = jasmine.createSpy('MockEstadio');
         MockSocio = jasmine.createSpy('MockSocio');
+        MockEntrenador = jasmine.createSpy('MockEntrenador');
         
 
         var locals = {
@@ -22,7 +23,8 @@ describe('Equipo Detail Controller', function() {
             'Equipo': MockEquipo,
             'Jugador': MockJugador,
             'Estadio': MockEstadio,
-            'Socio': MockSocio
+            'Socio': MockSocio,
+            'Entrenador': MockEntrenador
         };
         createController = function() {
             $injector.get('$controller')("EquipoDetailController", locals);

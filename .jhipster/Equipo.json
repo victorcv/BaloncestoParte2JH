@@ -20,6 +20,14 @@
             "otherEntityName": "socio",
             "relationshipType": "many-to-many",
             "ownerSide": false
+        },{
+            "relationshipId": 4,
+            "relationshipName": "entrenador",
+            "otherEntityName": "entrenador",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "equipo"
         }
     ],
     "fields": [

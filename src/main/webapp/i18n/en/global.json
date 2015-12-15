@@ -10,6 +10,7 @@
                 "jugador": "Jugador",
                 "estadio": "Estadio",
                 "socio": "Socio",
+                "entrenador": "Entrenador",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

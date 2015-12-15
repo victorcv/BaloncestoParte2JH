@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('ligaBaloncestoApp').controller('EquipoDialogController',
-    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Equipo', 'Jugador', 'Estadio', 'Socio',
-        function($scope, $stateParams, $modalInstance, $q, entity, Equipo, Jugador, Estadio, Socio) {
+    ['$scope', '$stateParams', '$modalInstance', '$q', 'entity', 'Equipo', 'Jugador', 'Estadio', 'Socio', 'Entrenador',
+        function($scope, $stateParams, $modalInstance, $q, entity, Equipo, Jugador, Estadio, Socio, Entrenador) {
 
         $scope.equipo = entity;
         $scope.jugadors = Jugador.query();
@@ -16,6 +16,15 @@ angular.module('ligaBaloncestoApp').controller('EquipoDialogController',
             $scope.estadios.push(estadio);
         });
         $scope.socios = Socio.query();
+        $scope.entrenadors = Entrenador.query({filter: 'equipo-is-null'});
+        $q.all([$scope.equipo.$promise, $scope.entrenadors.$promise]).then(function() {
+            if (!$scope.equipo.entrenador || !$scope.equipo.entrenador.id) {
+                return $q.reject();
+            }
+            return Entrenador.get({id : $scope.equipo.entrenador.id}).$promise;
+        }).then(function(entrenador) {
+            $scope.entrenadors.push(entrenador);
+        });
         $scope.load = function(id) {
             Equipo.get({id : id}, function(result) {
                 $scope.equipo = result;

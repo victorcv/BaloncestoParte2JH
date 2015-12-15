@@ -20,6 +20,7 @@
                     <th translate="ligaBaloncestoApp.equipo.fechaCreacion">FechaCreacion</th>
                     <th translate="ligaBaloncestoApp.equipo.pais">Pais</th>
                     <th translate="ligaBaloncestoApp.equipo.estadio">estadio</th>
+                    <th translate="ligaBaloncestoApp.equipo.entrenador">entrenador</th>
                     <th></th>
                 </tr>
             </thead>
@@ -31,6 +32,9 @@
                     <td>{{equipo.pais}}</td>
                     <td>
                         <a ui-sref="estadio.detail({id:equipo.estadio.id})">{{equipo.estadio.nombre}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="entrenador.detail({id:equipo.entrenador.id})">{{equipo.entrenador.nombre}}</a>
                     </td>
                     <td>
                         <button type="submit"

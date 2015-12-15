@@ -20,7 +20,8 @@
             "pais": "Pais",
             "jugador": "Jugador",
             "estadio": "Estadio",
-            "socio": "Socio"
+            "socio": "Socio",
+            "entrenador": "Entrenador"
         }
     }
 }
