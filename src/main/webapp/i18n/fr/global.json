@@ -11,6 +11,8 @@
                 "estadio": "Estadio",
                 "socio": "Socio",
                 "entrenador": "Entrenador",
+                "liga": "Liga",
+                "temporada": "Temporada",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
