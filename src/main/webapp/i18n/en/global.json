@@ -13,6 +13,8 @@
                 "entrenador": "Entrenador",
                 "liga": "Liga",
                 "temporada": "Temporada",
+                "arbitro": "Arbitro",
+                "partido": "Partido",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
