@@ -44,6 +44,9 @@ angular.module('ligaBaloncestoApp')
                     }],
                     entity: ['$stateParams', 'Equipo', function($stateParams, Equipo) {
                         return Equipo.get({id : $stateParams.id});
+                    }],
+                    maxCanastasJugador: ['$stateParams', 'Equipo', function($stateParams, Equipo) {
+                        return Equipo.maxCanastasJugador({id : $stateParams.id});
                     }]
                 }
             })

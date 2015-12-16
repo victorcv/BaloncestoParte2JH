@@ -12,6 +12,14 @@ angular.module('ligaBaloncestoApp')
                     return data;
                 }
             },
+            'maxCanastasJugador': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    data = angular.fromJson(data);
+                    data.fechaCreacion = DateUtils.convertLocaleDateFromServer(data.fechaCreacion);
+                    return data;
+                },url:'api/equipos/:id/maxCanastasJugador'
+            },
             'update': {
                 method: 'PUT',
                 transformRequest: function (data) {
