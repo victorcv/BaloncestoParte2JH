@@ -2,6 +2,7 @@ package com.xavipandis.liga.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.xavipandis.liga.domain.Equipo;
+import com.xavipandis.liga.domain.Jugador;
 import com.xavipandis.liga.repository.EquipoRepository;
 import com.xavipandis.liga.web.rest.util.HeaderUtil;
 import com.xavipandis.liga.web.rest.util.PaginationUtil;
@@ -97,6 +98,26 @@ public class EquipoResource {
                 equipo,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @RequestMapping(value = "/equipos/{id}/maxCanastasJugador",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Jugador> maxCanastasJugador(@PathVariable Long id) {
+        log.debug("REST request to get Equipo : {}", id);
+
+        Equipo equipo = equipoRepository.findOne(id);
+
+        if(equipo == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        List<Jugador> jugadores = equipoRepository.findByEquipoOrderByCanastasTotales(id);
+
+        return new ResponseEntity<>(
+            jugadores.get(0),
+            HttpStatus.OK);
     }
 
     /**
