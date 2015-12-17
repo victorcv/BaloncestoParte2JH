@@ -15,4 +15,6 @@ public interface EquipoRepository extends JpaRepository<Equipo,Long> {
 
         @Query("SELECT j from Jugador j WHERE j.equipo.id=:id order by j.canastasTotales desc")
         List<Jugador> findByEquipoOrderByCanastasTotales(@Param("id") Long id);
+        @Query("SELECT j from Jugador j WHERE j.equipo.id=:id order by j.fechaNacimiento asc")
+        List<Jugador> findByEquipoOrderByFechaNacimientoAsc(@Param("id") Long id);
 }

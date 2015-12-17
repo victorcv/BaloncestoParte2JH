@@ -119,6 +119,25 @@ public class EquipoResource {
             jugadores.get(0),
             HttpStatus.OK);
     }
+    @RequestMapping(value = "/equipos/{id}/jugadorMasVeterano",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Jugador> jugadorMasVeterano(@PathVariable Long id) {
+        log.debug("REST request to get Equipo : {}", id);
+
+        Equipo equipo = equipoRepository.findOne(id);
+
+        if(equipo == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        List<Jugador> jugadores = equipoRepository.findByEquipoOrderByFechaNacimientoAsc(id);
+
+        return new ResponseEntity<>(
+            jugadores.get(0),
+            HttpStatus.OK);
+    }
 
     /**
      * DELETE  /equipos/:id -> delete the "id" equipo.

@@ -47,6 +47,9 @@ angular.module('ligaBaloncestoApp')
                     }],
                     maxCanastasJugador: ['$stateParams', 'Equipo', function($stateParams, Equipo) {
                         return Equipo.maxCanastasJugador({id : $stateParams.id});
+                    }],
+                    jugadorMasVeterano: ['$stateParams', 'Equipo', function($stateParams, Equipo) {
+                        return Equipo.jugadorMasVeterano({id : $stateParams.id});
                     }]
                 }
             })
