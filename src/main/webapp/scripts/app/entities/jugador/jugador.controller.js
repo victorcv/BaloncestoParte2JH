@@ -29,6 +29,8 @@ angular.module('ligaBaloncestoApp')
                 fechaNacimiento: null,
                 posicion: null,
                 canastasTotales: null,
+                asistenciasTotales: null,
+                rebotesTotales: null,
                 id: null
             };
         };

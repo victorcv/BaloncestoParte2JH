@@ -27,6 +27,8 @@
             <column name="fecha_nacimiento" type="date"/>
             <column name="posicion" type="varchar(255)"/>
             <column name="canastas_totales" type="integer"/>
+            <column name="asistencias_totales" type="integer"/>
+            <column name="rebotes_totales" type="integer"/>
             <column name="equipo_id" type="bigint"/>
         </createTable>
         

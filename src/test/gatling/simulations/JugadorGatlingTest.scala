@@ -67,7 +67,7 @@ class JugadorGatlingTest extends Simulation {
             .exec(http("Create new jugador")
             .post("/api/jugadors")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "fechaNacimiento":"2020-01-01T00:00:00.000Z", "posicion":"SAMPLE_TEXT", "canastasTotales":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "nombre":"SAMPLE_TEXT", "fechaNacimiento":"2020-01-01T00:00:00.000Z", "posicion":"SAMPLE_TEXT", "canastasTotales":"0", "asistenciasTotales":"0", "rebotesTotales":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_jugador_url")))
             .pause(10)

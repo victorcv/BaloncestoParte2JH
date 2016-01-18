@@ -54,6 +54,12 @@ public class JugadorResourceIntTest {
     private static final Integer DEFAULT_CANASTAS_TOTALES = 1;
     private static final Integer UPDATED_CANASTAS_TOTALES = 2;
 
+    private static final Integer DEFAULT_ASISTENCIAS_TOTALES = 1;
+    private static final Integer UPDATED_ASISTENCIAS_TOTALES = 2;
+
+    private static final Integer DEFAULT_REBOTES_TOTALES = 1;
+    private static final Integer UPDATED_REBOTES_TOTALES = 2;
+
     @Inject
     private JugadorRepository jugadorRepository;
 
@@ -84,6 +90,8 @@ public class JugadorResourceIntTest {
         jugador.setFechaNacimiento(DEFAULT_FECHA_NACIMIENTO);
         jugador.setPosicion(DEFAULT_POSICION);
         jugador.setCanastasTotales(DEFAULT_CANASTAS_TOTALES);
+        jugador.setAsistenciasTotales(DEFAULT_ASISTENCIAS_TOTALES);
+        jugador.setRebotesTotales(DEFAULT_REBOTES_TOTALES);
     }
 
     @Test
@@ -106,6 +114,8 @@ public class JugadorResourceIntTest {
         assertThat(testJugador.getFechaNacimiento()).isEqualTo(DEFAULT_FECHA_NACIMIENTO);
         assertThat(testJugador.getPosicion()).isEqualTo(DEFAULT_POSICION);
         assertThat(testJugador.getCanastasTotales()).isEqualTo(DEFAULT_CANASTAS_TOTALES);
+        assertThat(testJugador.getAsistenciasTotales()).isEqualTo(DEFAULT_ASISTENCIAS_TOTALES);
+        assertThat(testJugador.getRebotesTotales()).isEqualTo(DEFAULT_REBOTES_TOTALES);
     }
 
     @Test
@@ -140,7 +150,9 @@ public class JugadorResourceIntTest {
                 .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
                 .andExpect(jsonPath("$.[*].fechaNacimiento").value(hasItem(DEFAULT_FECHA_NACIMIENTO.toString())))
                 .andExpect(jsonPath("$.[*].posicion").value(hasItem(DEFAULT_POSICION.toString())))
-                .andExpect(jsonPath("$.[*].canastasTotales").value(hasItem(DEFAULT_CANASTAS_TOTALES)));
+                .andExpect(jsonPath("$.[*].canastasTotales").value(hasItem(DEFAULT_CANASTAS_TOTALES)))
+                .andExpect(jsonPath("$.[*].asistenciasTotales").value(hasItem(DEFAULT_ASISTENCIAS_TOTALES)))
+                .andExpect(jsonPath("$.[*].rebotesTotales").value(hasItem(DEFAULT_REBOTES_TOTALES)));
     }
 
     @Test
@@ -157,7 +169,9 @@ public class JugadorResourceIntTest {
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
             .andExpect(jsonPath("$.fechaNacimiento").value(DEFAULT_FECHA_NACIMIENTO.toString()))
             .andExpect(jsonPath("$.posicion").value(DEFAULT_POSICION.toString()))
-            .andExpect(jsonPath("$.canastasTotales").value(DEFAULT_CANASTAS_TOTALES));
+            .andExpect(jsonPath("$.canastasTotales").value(DEFAULT_CANASTAS_TOTALES))
+            .andExpect(jsonPath("$.asistenciasTotales").value(DEFAULT_ASISTENCIAS_TOTALES))
+            .andExpect(jsonPath("$.rebotesTotales").value(DEFAULT_REBOTES_TOTALES));
     }
 
     @Test
@@ -181,6 +195,8 @@ public class JugadorResourceIntTest {
         jugador.setFechaNacimiento(UPDATED_FECHA_NACIMIENTO);
         jugador.setPosicion(UPDATED_POSICION);
         jugador.setCanastasTotales(UPDATED_CANASTAS_TOTALES);
+        jugador.setAsistenciasTotales(UPDATED_ASISTENCIAS_TOTALES);
+        jugador.setRebotesTotales(UPDATED_REBOTES_TOTALES);
 
         restJugadorMockMvc.perform(put("/api/jugadors")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -195,6 +211,8 @@ public class JugadorResourceIntTest {
         assertThat(testJugador.getFechaNacimiento()).isEqualTo(UPDATED_FECHA_NACIMIENTO);
         assertThat(testJugador.getPosicion()).isEqualTo(UPDATED_POSICION);
         assertThat(testJugador.getCanastasTotales()).isEqualTo(UPDATED_CANASTAS_TOTALES);
+        assertThat(testJugador.getAsistenciasTotales()).isEqualTo(UPDATED_ASISTENCIAS_TOTALES);
+        assertThat(testJugador.getRebotesTotales()).isEqualTo(UPDATED_REBOTES_TOTALES);
     }
 
     @Test

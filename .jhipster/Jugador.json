@@ -31,6 +31,16 @@
             "fieldId": 4,
             "fieldName": "canastasTotales",
             "fieldType": "Integer"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "asistenciasTotales",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "rebotesTotales",
+            "fieldType": "Integer"
         }
     ],
     "changelogDate": "20151209192856",

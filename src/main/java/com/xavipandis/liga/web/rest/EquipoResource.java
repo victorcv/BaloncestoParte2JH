@@ -9,11 +9,13 @@ import com.xavipandis.liga.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -21,10 +23,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Equipo.
  */
+
 @RestController
 @RequestMapping("/api")
 public class EquipoResource {
@@ -100,6 +104,28 @@ public class EquipoResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    /**
+      * GET jugadores equipo
+     */
+
+    @Transactional
+    @RequestMapping(value = "/equipos/{id}/jugadores",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Set<Jugador>> getJugadoresEquipo(@PathVariable Long id) {
+        log.debug("REST request to get Equipo : {}", id);
+        Equipo equipo = equipoRepository.findOne(id);
+
+        if(equipo == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(
+            equipo.getJugadors(),
+            HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/equipos/{id}/maxCanastasJugador",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -119,6 +145,7 @@ public class EquipoResource {
             jugadores.get(0),
             HttpStatus.OK);
     }
+
     @RequestMapping(value = "/equipos/{id}/jugadorMasVeterano",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -139,6 +166,26 @@ public class EquipoResource {
             HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/equipos/{id}/statsEquipo",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Jugador> statsEquipo(@PathVariable Long id) {
+        log.debug("REST request to get Equipo : {}", id);
+
+        Equipo equipo = equipoRepository.findOne(id);
+
+        if(equipo == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        List<Jugador> jugadores = equipoRepository.findByEquipoOrderByAsistenciasTotalesAsc(id, new PageRequest(0,2));
+        List<Jugador> jugadores2 = equipoRepository.findByEquipoOrderByRebotesTotalesAsc(id, new PageRequest(0,2));
+
+        return new ResponseEntity<>(
+            jugadores.get(0),
+            HttpStatus.OK);
+    }
     /**
      * DELETE  /equipos/:id -> delete the "id" equipo.
      */

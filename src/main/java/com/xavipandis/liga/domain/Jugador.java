@@ -36,6 +36,12 @@ public class Jugador implements Serializable {
     @Column(name = "canastas_totales")
     private Integer canastasTotales;
 
+    @Column(name = "asistencias_totales")
+    private Integer asistenciasTotales;
+
+    @Column(name = "rebotes_totales")
+    private Integer rebotesTotales;
+
     @ManyToOne
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
@@ -80,6 +86,22 @@ public class Jugador implements Serializable {
         this.canastasTotales = canastasTotales;
     }
 
+    public Integer getAsistenciasTotales() {
+        return asistenciasTotales;
+    }
+
+    public void setAsistenciasTotales(Integer asistenciasTotales) {
+        this.asistenciasTotales = asistenciasTotales;
+    }
+
+    public Integer getRebotesTotales() {
+        return rebotesTotales;
+    }
+
+    public void setRebotesTotales(Integer rebotesTotales) {
+        this.rebotesTotales = rebotesTotales;
+    }
+
     public Equipo getEquipo() {
         return equipo;
     }
@@ -113,6 +135,8 @@ public class Jugador implements Serializable {
             ", fechaNacimiento='" + fechaNacimiento + "'" +
             ", posicion='" + posicion + "'" +
             ", canastasTotales='" + canastasTotales + "'" +
+            ", asistenciasTotales='" + asistenciasTotales + "'" +
+            ", rebotesTotales='" + rebotesTotales + "'" +
             '}';
     }
 }
