@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "jugador")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.NONE)
 public class Jugador implements Serializable {
 
     @Id
