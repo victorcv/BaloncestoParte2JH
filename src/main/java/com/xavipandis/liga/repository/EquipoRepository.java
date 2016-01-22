@@ -24,4 +24,5 @@ public interface EquipoRepository extends JpaRepository<Equipo,Long> {
         //Jugadores con mas rebotes
         @Query("SELECT j from Jugador j WHERE j.equipo.id=:id order by j.rebotesTotales asc")
         List<Jugador> findByEquipoOrderByRebotesTotalesAsc(@Param("id") Long id,Pageable pageable);
+
 }

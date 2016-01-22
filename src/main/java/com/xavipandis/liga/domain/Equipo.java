@@ -32,7 +32,7 @@ public class Equipo implements Serializable {
     @Column(name = "pais")
     private String pais;
 
-    @OneToMany(mappedBy = "equipo")
+    @OneToMany(mappedBy = "equipo", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Jugador> jugadors = new HashSet<>();
