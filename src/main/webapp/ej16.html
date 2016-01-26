@@ -16,34 +16,22 @@
             box-shadow: 0px 11px 15px -10px rgba(0,0,0,.52);
         }
     </style>
-    <div ng-app="ligaBaloncestoApp" ng-controller="creacionCtrl" ng-init="getEquipos()">
+    <div ng-app="ligaBaloncestoApp" ng-controller="creacionCtrl">
         <br/>
         <div class="container" ng-cloak>
             <div class="well">
                 <form name="formJugador" ng-submit="save()">
-                    Nombre: <input type="text" name="nombre" ng-model="jugador.nombre" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
-                    <span ng-show="formJugador.nombre.$touched && formJugador.nombre.$invalid">El nombre es requerido</span><br/>
+                    Nombre: <input type="text" name="nombre" ng-model="equipo.nombre" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+                    <span ng-show="formJugador.equipo.$touched && formJugador.equipo.$invalid">El nombre es requerido</span><br/>
 
-                    Fecha Nacimiento: <input type="date" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="fechaNacimiento" id="field_fechaNacimiento"
-                                    ng-model="jugador.fechaNacimiento" required/>
-                    <span ng-show="formJugador.fechaNacimiento.$touched && formJugador.fechaNacimiento.$invalid">Fecha nacimiento requerida</span><br/>
+                    Fecha Creacion: <input type="date" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="fechaCreacion" id="field_fechaCreacion"
+                                    ng-model="equipo.fechaCreacion" required/>
+                    <span ng-show="formJugador.fechaCreacion.$touched && formJugador.fechaCreacion.$invalid">Fecha nacimiento requerida</span><br/>
 
-                    Posicion: <input type="text" name="posicion" ng-model="jugador.posicion" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
-                    <span ng-show="formJugador.posicion.$touched && formJugador.posicion.$invalid">La posicion es requerida</span><br/>
+                    Pais: <input type="text" name="pais" ng-model="equipo.pais" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+                    <span ng-show="formJugador.pais.$touched && formJugador.pais.$invalid">La posicion es requerida</span><br/>
 
-                    Asistencias Totales: <input type="number" name="asistenciasTotales" ng-model="jugador.asistenciasTotales" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
-                    <span ng-show="formJugador.asistenciasTotales.$touched && formJugador.asistenciasTotales.$invalid">Requerido</span><br/>
-
-                    Canastas Totales: <input type="number" name="canastasTotales" ng-model="jugador.canastasTotales" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
-                    <span ng-show="formJugador.canastasTotales.$touched && formJugador.canastasTotales.$invalid">Requerido</span><br/>
-
-                    Rebotes Totales: <input type="number" name="rebotesTotales" ng-model="jugador.rebotesTotales" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
-                    <span ng-show="formJugador.rebotesTotales.$touched && formJugador.rebotesTotales.$invalid">Requerido</span><br/>
-
-                    Equipos: <select ng-model="jugador.equipo.id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
-                        <option ng-repeat="equipo in equipos" value="{{equipo.id}}">{{equipo.nombre}}</option>
-                    </select><br/>
-
+                    <br/>
                     <button type="submit" ng-disabled="formJugador.$invalid || isSaving" class="btn btn-primary">
                         <span>Save</span>
                     </button>
@@ -216,17 +204,11 @@
 
     <script>
         var app = angular.module('ligaBaloncestoApp');
-        app.controller('creacionCtrl', function($scope, Jugador, Equipo) {
-            $scope.equipos;
-            $scope.getEquipos = function(){
-                Equipo.query({},function(result) {
-                    $scope.equipos = result;
-                });
-            };
-            $scope.jugador;
+        app.controller('creacionCtrl', function($scope, Equipo) {
+            $scope.equipo;
             $scope.save = function () {
                 $scope.isSaving = true;
-                Jugador.save($scope.jugador, onSaveSuccess, onSaveError);
+                Equipo.save($scope.equipo, onSaveSuccess, onSaveError);
             };
             var onSaveSuccess = function (result) {
                 $scope.isSaving = false;
@@ -235,8 +217,8 @@
                 $scope.isSaving = false;
             };
         });
-        app.factory("Jugador",function($resource){
-            return $resource('api/jugadors/:id', {}, {
+        app.factory("Equipo",function($resource){
+            return $resource('api/equipos/:id', {}, {
                 'save': {
                     method: 'POST',
                     transformRequest: function (data) {
