@@ -24,7 +24,7 @@
                         <option ng-repeat="jugador in allJugadores" value="{{jugador.id}}">{{jugador.nombre}}</option>
                 </select>-->
 
-                <select class="form-control" name="jugador" ng-model="jugador" ng-options="jugador as jugador.nombre for jugador in allJugadores track by jugador.id">
+                Jugadores: <select class="form-control" name="jugador" ng-model="jugador" ng-options="jugador as jugador.nombre for jugador in allJugadores track by jugador.id">
                     <option value=""></option>
                 </select>
                 <p></p>
