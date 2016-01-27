@@ -20,15 +20,13 @@
         <br/>
         <div class="container" ng-cloak>
             <div class="well">
-                <!--Jugadores: <select ng-model="jugador.id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                Jugadores: <select ng-model="selected" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                        <option value=""></option>
                         <option ng-repeat="jugador in allJugadores" value="{{jugador.id}}">{{jugador.nombre}}</option>
-                </select>-->
-
-                Jugadores: <select class="form-control" name="jugador" ng-model="jugador" ng-options="jugador as jugador.nombre for jugador in allJugadores track by jugador.id">
-                    <option value=""></option>
                 </select>
+
                 <p></p>
-                <button class="btn btn-primary" ng-click="cargarJugador(jugador.id); getAllJugadores()">
+                <button class="btn btn-primary" ng-click="cargarJugador(selected); getAllJugadores()">
                     <span>Seleccionar Jugador</span>
                 </button>
                 <br/><br/>
@@ -239,10 +237,8 @@
             $scope.update = function(){
                 Jugador.update($scope.jugadorSel, updateOK);
             };
-
             var updateOK = function(){
                 $scope.getAllJugadores();
-                $scope.jugadorSel = null;
             }
         });
         app.factory("Jugador",function($resource){
