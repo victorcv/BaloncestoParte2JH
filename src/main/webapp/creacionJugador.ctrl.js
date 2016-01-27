@@ -3,13 +3,13 @@
  */
 'use strict'
 angular.module('ligaBaloncestoApp')
-    .controller('creacionJugadorCtrl', function($scope, Jugador, Equipo) {
-        $scope.equipos;
-        $scope.getEquipos = function(){
+    .controller('creacionJugadorCtrl', function($scope, Jugador, Equipo, entity) {
+        $scope.equipos = entity;
+        /*$scope.getEquipos = function(){
             Equipo.query({},function(result) {
                 $scope.equipos = result;
             });
-        };
+        };*/
         $scope.jugador;
         $scope.save = function () {
             $scope.isSaving = true;

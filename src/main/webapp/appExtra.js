@@ -13,6 +13,11 @@ angular.module('ligaBaloncestoApp')
                         templateUrl: 'ej15-extra.html',
                         controller: 'creacionJugadorCtrl'
                     }
+                },
+                resolve: {
+                    entity: ['$stateParams', 'Equipo', function($stateParams, Equipo) {
+                        return Equipo.query();
+                    }]
                 }
             })
             .state('ej16', {
