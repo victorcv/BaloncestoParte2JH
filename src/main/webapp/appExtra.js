@@ -42,6 +42,11 @@ angular.module('ligaBaloncestoApp')
                         templateUrl: 'ej17-extra.html',
                         controller: 'modificacionCtrl'
                     }
+                },
+                resolve: {
+                    entity: ['$stateParams', 'Jugador', function($stateParams, Jugador) {
+                        return Jugador.query();
+                    }]
                 }
             })
             .state('ej14', {

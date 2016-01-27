@@ -3,14 +3,14 @@
  */
 'use strict'
 angular.module('ligaBaloncestoApp')
-.controller('modificacionCtrl', function($scope, Jugador,Equipo) {
-    $scope.allJugadores;
+.controller('modificacionCtrl', function($scope, Jugador,Equipo,entity) {
+    $scope.allJugadores = entity;
     $scope.jugadorSel;
     $scope.equipos = Equipo.query();
 
-    $scope.getAllJugadores = function(){
+    /*$scope.getAllJugadores = function(){
         $scope.allJugadores = Jugador.query();
-    };
+    };*/
     $scope.cargarJugador = function(id){
         Jugador.get({id: id},function(result){
             $scope.jugadorSel = result;
