@@ -20,8 +20,12 @@
         <br/>
         <div class="container" ng-cloak>
             <div class="well">
-                Jugadores: <select ng-model="jugador.id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
-                <option ng-repeat="jugador in allJugadores" value="{{jugador.id}}">{{jugador.nombre}}</option>
+                <!--Jugadores: <select ng-model="jugador.id" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                        <option ng-repeat="jugador in allJugadores" value="{{jugador.id}}">{{jugador.nombre}}</option>
+                </select>-->
+
+                <select class="form-control" name="jugador" ng-model="jugador" ng-options="jugador as jugador.nombre for jugador in allJugadores track by jugador.id">
+                    <option value=""></option>
                 </select>
                 <p></p>
                 <button class="btn btn-primary" ng-click="cargarJugador(jugador.id); getAllJugadores()">
@@ -41,6 +45,10 @@
                     AsistenciasTotales: <input type="number" name="asistenciasTotales" ng-model="jugadorSel.asistenciasTotales" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
 
                     RebotesTotales: <input type="number" name="rebotesTotales" ng-model="jugadorSel.rebotesTotales" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" required/>
+
+                    Equipo: <select class="form-control" id="field_equipo" name="equipo" ng-model="jugadorSel.equipo" ng-options="equipo as equipo.nombre for equipo in equipos track by equipo.id">
+                        <option value=""></option>
+                    </select>
 
                     <br/>
                     <button type="submit" ng-disabled="formJugador.$invalid || isSaving" class="btn btn-primary">
@@ -215,9 +223,10 @@
 
     <script>
         var app = angular.module('ligaBaloncestoApp');
-        app.controller('modificacionCtrl', function($scope, Jugador) {
+        app.controller('modificacionCtrl', function($scope, Jugador,Equipo) {
             $scope.allJugadores;
             $scope.jugadorSel;
+            $scope.equipos = Equipo.query();
 
             $scope.getAllJugadores = function(){
                 $scope.allJugadores = Jugador.query();
@@ -228,8 +237,13 @@
                 });
             };
             $scope.update = function(){
-                Jugador.update($scope.jugadorSel);
+                Jugador.update($scope.jugadorSel, updateOK);
             };
+
+            var updateOK = function(){
+                $scope.getAllJugadores();
+                $scope.jugadorSel = null;
+            }
         });
         app.factory("Jugador",function($resource){
             return $resource('api/jugadors/:id', {}, {
