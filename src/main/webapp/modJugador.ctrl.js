@@ -8,9 +8,6 @@ angular.module('ligaBaloncestoApp')
     $scope.jugadorSel;
     $scope.equipos = Equipo.query();
 
-    /*$scope.getAllJugadores = function(){
-        $scope.allJugadores = Jugador.query();
-    };*/
     $scope.cargarJugador = function(id){
         Jugador.get({id: id},function(result){
             $scope.jugadorSel = result;
@@ -20,7 +17,7 @@ angular.module('ligaBaloncestoApp')
         Jugador.update($scope.jugadorSel, updateOK);
     };
     var updateOK = function(){
-        $scope.getAllJugadores();
+        $scope.allJugadores = Jugador.query();
     }
 })
 .factory("Jugador",function($resource){
