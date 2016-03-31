@@ -112,4 +112,18 @@ public class JugadorResource {
         jugadorRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("jugador", id.toString())).build();
     }
+
+    // El value lo cambiamos por canastas totales
+    // NUEVO METODO
+    @RequestMapping(value = "/jugadorsURL/{canastasTotales}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List <Jugador>> bombas(@PathVariable Integer canastasTotales) {//devuelve lista jugador
+        log.debug("REST request to get Jugador : {}", canastasTotales);
+        List<Jugador> jugadores=jugadorRepository.Canastas(canastasTotales);
+        return new ResponseEntity<>(jugadores, HttpStatus.OK);
+
+    }
+
 }

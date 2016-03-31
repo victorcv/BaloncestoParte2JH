@@ -4,16 +4,22 @@
         padding: 5px;
     }
 </style>
-<div ng-app="myApp" ng-controller="jugadorCtrl">
-    <table>
+<p>Canastas para filtrar:
+    <input name="ponerCanastas" ng-model="ponerCanastas" ng-change="reloadPagina()" type="number" required>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <td>Nombre</td>
-            <td>Posicion</td>
-            <td>Canastas Totales</td>
-            <td>Asistencias Totales</td>
-            <td>Equipo</td>
+            <td ng-click="filtrarPor('+nombre')">Nombre</td>
+            <td ng-click="filtrarPor('+posicion')">Posicion</td>
+            <td ng-click="filtrarPor('+canastasTotales')">Canastas Totales</td>
+            <td ng-click="filtrarPor('+asistenciasTotales')">Asistencias Totales</td>
+            <td ng-click="filtrarPor('jugador.equipo.id')">Equipo</td>
         </tr>
-        <tr ng-repeat="jugador in jugadores" ng-show="jugador.canastasTotales > 50">
+        </thead>
+        <tbody>
+        <tr ng-repeat="jugador in jugadores | orderBy:filtracion">
             <td ng-if="$odd" style="background-color:#f1f1f1">{{jugador.nombre}}</td>
             <td ng-if="$even">{{jugador.nombre}}</td>
 
@@ -29,5 +35,6 @@
             <td ng-if="$odd" style="background-color:#f1f1f1">{{jugador.equipo.nombre}}</td>
             <td ng-if="$even">{{jugador.equipo.nombre}}</td>
         </tr>
-</table>
-    </div>
+        </tbody>
+    </table>
+</div>
