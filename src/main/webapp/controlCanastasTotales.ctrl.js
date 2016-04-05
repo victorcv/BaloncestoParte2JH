@@ -11,6 +11,9 @@ angular.module('ligaBaloncestoApp')
         $scope.reloadPagina = function (){
             $http.get("api/jugadorsURL/"+$scope.ponerCanastas).then(function(response){
                 $scope.jugadores=response.data;
+                Jugador.consultarCanastas({consultarCanastas: $scope.canastasTotales}, function (response) {
+                    $scope.jugadores = response;
+                })
             });
         }
 
