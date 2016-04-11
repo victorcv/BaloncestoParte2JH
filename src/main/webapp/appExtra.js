@@ -76,4 +76,18 @@ angular.module('ligaBaloncestoApp')
             }
         })
 
+
+            .state('Prac2Ej2', {
+                url: '/Prac2Ej2',
+                data: {
+                    pageTitle: 'Prac2Ej2'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'Prac2Ej2.html',
+                        controller: 'VicCtrl2'// hace una peticion y te coge los datos de la peticion y
+                        // te los pone en el scope
+                    }
+                }
+            })
     });

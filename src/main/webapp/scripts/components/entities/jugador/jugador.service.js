@@ -27,8 +27,10 @@ angular.module('ligaBaloncestoApp')
                 }
             },
             'consultarCanastas': {
-                method: 'GET', isArray: true, url:'api/jugadorsURL/:consultarCanastas'
+                method: 'GET', isArray: true, url:'api/jugadorsURL/:consultarCanastas' //jugadorsURL puede ser el que sea
             },
-
+            'EquipoconsultarCanastas': {
+            method: 'GET', isArray: true, url:'api/equipasosURL/:consultarEnEquipo/jugadorasos/:consultarCanastas'
+        },
         });
     });
