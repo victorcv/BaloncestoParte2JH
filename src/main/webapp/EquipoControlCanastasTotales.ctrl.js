@@ -4,7 +4,18 @@
 'use strict'
 angular.module('ligaBaloncestoApp')
     .controller('vicCtrl2',function ($scope, $http, Jugador) {
-
+        /*
+        * ARCHIVOS CONFIGURADOS PARA EL Prac2Ej2.html
+        *
+        * JugadorRepository.java
+        * JugadorResource.java
+        * appExtra.js
+        * jugador.service.js
+        * indexextra.html
+        * EquipoControlCanastasTotales.ctrl.js
+        *
+        *
+        * */
         $http.get("api/equipos").then(function (response) {//enseña equipos
             $scope.equipos = response.data;
         });
