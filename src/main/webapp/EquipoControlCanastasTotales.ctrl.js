@@ -3,20 +3,27 @@
  */
 'use strict'
 angular.module('ligaBaloncestoApp')
-    .controller('VicCtrl2',function ($scope, $http) {
-        //$http.get("api/jugadorsURL/70000").then(function(response){$scope.jugadores=response.data;});// response es response.data(la respuesta de la peticion)
-        // peticion get a la url del request maping(en el JugadorResource). la respuesta de la funcion la guardamos en el scope de jugadores para hacer el ng.repeat
-        //$scope.jugadores hace referencia al model jugadores(lo hemos llamado asi)
-        $scope.reloadPagina = function (){
-            $http.get("api/equipasosURL/"+$scope.elegirEquipo+"/jugadorasos/"+$scope.ponerCanastas).then(function(response){//es necesario mirar el service del jugador /
-                $scope.jugadores=response.data;
-                Jugador.consultarCanastas({consultarCanastas: $scope.canastasTotales}, function (response) {
+    .controller('vicCtrl2',function ($scope, $http, Jugador) {
+
+        $http.get("api/equipos").then(function (response) {//enseña equipos
+            $scope.equipos = response.data;
+        });
+
+        $scope.reloadPagina2 = function () {
+            if($scope.elegirEquipo == null) {
+                Jugador.consultarCanastas({consultarCanastas: $scope.ponerCanastas2}, function (response) {
                     $scope.jugadores = response;
                 })
-            });
-        }
+            }else{
+                //codigo equipo y canastas
+                Jugador.EquipoconsultarCanastas({consultarCanastasos: $scope.ponerCanastas2, consultarEnEquipo: $scope.elegirEquipo}, function (response){
+                    $scope.jugadores = response;
+                })
+            }
+        };
+        /**************************************************************/
         $scope.cargarPagina = function() {
-            $scope.reloadPagina();
+            $scope.reloadPagina2();
         };
 
         $scope.filtrarPor = function (filtro) {

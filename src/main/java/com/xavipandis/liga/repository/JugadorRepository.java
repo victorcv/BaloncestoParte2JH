@@ -16,4 +16,7 @@ public interface JugadorRepository extends JpaRepository<Jugador,Long> {
 @Query("select j from Jugador j where j.canastasTotales >= :canastasTotales")// : objeto param
 List<Jugador> Canastas(@Param("canastasTotales") Integer canastasTotales);//"canastasTotales" es el que comprueba con la query
 
+// Prac2Ej2 HTML
+@Query("select j from Jugador j, Equipo eq where j.equipo.id = eq.id and j.canastasTotales >= :consultarCanastasos and j.equipo.id = :consultarEnEquipo")
+List<Jugador> CanastasEquipo(@Param("consultarCanastasos") Integer consultarCanastasos, @Param("consultarEnEquipo") Long consultarEnEquipo);
 }

@@ -5,14 +5,15 @@
     }
 </style>
 Equipo:
-<select ng-change="cargarPagina()" ng-model="elegirEquipo" name="elegirEquipo" >
+<select ng-change="cargarPagina()" ng-model="elegirEquipo" >
     <option value="">Elige equipo</option>
     <option ng-repeat="equipo in equipos" value="{{equipo.id}}">{{equipo.nombre}}</option>
 </select>
 
 <p>Canastas para filtrar:
-    <input name="ponerCanastas" ng-model="ponerCanastas" ng-change="reloadPagina()" type="number" required>
+    <input ng-model="ponerCanastas2" ng-change="reloadPagina2()" type="number">
 </p>
+
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>

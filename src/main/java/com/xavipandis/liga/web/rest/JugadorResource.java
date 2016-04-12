@@ -114,7 +114,7 @@ public class JugadorResource {
     }
 
     // El value lo cambiamos por canastas totales
-    // NUEVO METODO
+    // NUEVO METODO Prac2Ej1
     @RequestMapping(value = "/jugadorsURL/{canastasTotales}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
@@ -122,6 +122,20 @@ public class JugadorResource {
     public ResponseEntity<List <Jugador>> bombas(@PathVariable Integer canastasTotales) {//devuelve lista jugador
         log.debug("REST request to get Jugador : {}", canastasTotales);
         List<Jugador> jugadores=jugadorRepository.Canastas(canastasTotales);
+        return new ResponseEntity<>(jugadores, HttpStatus.OK);
+
+    }
+
+    // NUEVO METODO Prac2Ej2
+    @RequestMapping(value = "/equipos/{consultarEnEquipo}/jugadorasos/{consultarCanastasos}",
+
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Jugador>> bombas2(@PathVariable Integer consultarCanastasos, @PathVariable Long consultarEnEquipo) {//bombas2 lo pone en el swager Administation -> api no sirve
+
+        List<Jugador> jugadores= jugadorRepository.CanastasEquipo(consultarCanastasos, consultarEnEquipo);
+
         return new ResponseEntity<>(jugadores, HttpStatus.OK);
 
     }

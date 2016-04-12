@@ -85,7 +85,7 @@ angular.module('ligaBaloncestoApp')
                 views: {
                     'content@': {
                         templateUrl: 'Prac2Ej2.html',
-                        controller: 'VicCtrl2'// hace una peticion y te coge los datos de la peticion y
+                        controller: 'vicCtrl2'// hace una peticion y te coge los datos de la peticion y
                         // te los pone en el scope
                     }
                 }
