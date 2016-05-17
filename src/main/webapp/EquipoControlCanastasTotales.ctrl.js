@@ -10,18 +10,19 @@ angular.module('ligaBaloncestoApp')
         * JugadorRepository.java
         * JugadorResource.java
         * appExtra.js
-        * jugador.service.js
+        * jugador.service.js   --- consultarCanastas y EquipoconsultarCanastas
         * indexextra.html
         * EquipoControlCanastasTotales.ctrl.js
         *
-        *
+        *ng-model scope controller
+        *ng-change controller
         * */
         $http.get("api/equipos").then(function (response) {//enseña equipos
             $scope.equipos = response.data;
         });
 
-        $scope.reloadPagina2 = function () {
-            if($scope.elegirEquipo == null) {
+        $scope.reloadPagina2 = function () { // scope.reloadPagina2 -- ng-change   scope.ponerCanastas2 -- ng-model
+            if($scope.elegirEquipo == null) { //Si no tiene ningun equipo seleccionado
                 Jugador.consultarCanastas({consultarCanastas: $scope.ponerCanastas2}, function (response) {
                     $scope.jugadores = response;
                 })

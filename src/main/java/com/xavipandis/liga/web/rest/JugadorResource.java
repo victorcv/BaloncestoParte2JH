@@ -121,7 +121,7 @@ public class JugadorResource {
     @Timed
     public ResponseEntity<List <Jugador>> bombas(@PathVariable Integer canastasTotales) {//devuelve lista jugador
         log.debug("REST request to get Jugador : {}", canastasTotales);
-        List<Jugador> jugadores=jugadorRepository.Canastas(canastasTotales);
+        List<Jugador> jugadores=jugadorRepository.Canastas(canastasTotales); //Canastas es la query en el repository y le pasa un param
         return new ResponseEntity<>(jugadores, HttpStatus.OK);
 
     }
@@ -134,7 +134,7 @@ public class JugadorResource {
     @Timed
     public ResponseEntity<List<Jugador>> bombas2(@PathVariable Integer consultarCanastasos, @PathVariable Long consultarEnEquipo) {//bombas2 lo pone en el swager Administation -> api no sirve
 
-        List<Jugador> jugadores= jugadorRepository.CanastasEquipo(consultarCanastasos, consultarEnEquipo);
+        List<Jugador> jugadores= jugadorRepository.CanastasEquipo(consultarCanastasos, consultarEnEquipo); // CanastasEquipo es la query en el repository y le pasa 2 params
 
         return new ResponseEntity<>(jugadores, HttpStatus.OK);
 
